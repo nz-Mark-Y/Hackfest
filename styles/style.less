@@ -1,1 +1,22 @@
 // out: style.css
+
+.gm-style-iw + div {  /* removes close button on infowindow */
+	display: none;
+}
+
+#googlemaps {  /* do not change */
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	opacity: .75;
+}
+
+#info {
+	position: relative;
+	z-index: 1;
+	width: 300px;
+	margin: 80px 0 0 4px;
+}
