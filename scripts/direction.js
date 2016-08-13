@@ -1,5 +1,5 @@
 function test() {
-	console.log(markers[0].position);
+	console.log(typeof city_name);
 }
 
 function initMap() {
@@ -8,7 +8,7 @@ function initMap() {
 
 	// Listen to change events from the start and end lists.
 	var onChangeHandler = function() {
-		calculateAndDisplayRoute(directionsDisplay, directionsService, markers, stepDisplay, map);
+		calculateAndDisplayRoute();
 	};
 	document.getElementById('start').addEventListener('change', onChangeHandler);
 	document.getElementById('end').addEventListener('change', onChangeHandler);
@@ -20,7 +20,7 @@ function calculateAndDisplayRoute() {
 
 	// Retrieve the start and end locations and create a DirectionsRequest using WALKING directions.
 	directionsService.route({
-		origin: document.getElementById('start').value,
+		origin: xmlhttp,
 		destination: document.getElementById('end').value,
 		travelMode: 'WALKING'
 	}, function(response, status) {

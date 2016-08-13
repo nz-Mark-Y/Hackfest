@@ -4,6 +4,7 @@ var markers = [];
 var directionsService;
 var directionsDisplay;
 var stepDisplay;
+var city_name;
 
 function init() {
 	var mapOptions = {
@@ -179,7 +180,8 @@ function getCity() {
         		returnedData = JSON.parse(xmlhttp.responseText);
 				arrayNum = returnedData.results.length;
 				arrayNum -= 3;
-				console.log(returnedData.results[arrayNum].formatted_address);
+				city_name = returnedData.results[arrayNum].formatted_address;
+				console.log(city_name);
 				return returnedData.results[arrayNum].formatted_address;
         	}
         	else if (xmlhttp.status == 400) {
