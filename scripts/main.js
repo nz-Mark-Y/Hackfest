@@ -153,12 +153,13 @@ google.maps.event.addDomListener(window, 'load', init);
 
 function sendRequest() {
     var range = document.getElementById("range-slider")[0].value;
-	getCity(currentLocation.lat(), currentLocation.lng());
+	var city = getCity(currentLocation.lat(), currentLocation.lng());
 }
 
 function getCity() {
 	var xmlhttp = new XMLHttpRequest();
 	var returnedData;
+	var arrayNum;
 	xmlhttp.onreadystatechange = function() {
     	if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
         	if (xmlhttp.status == 200) {
@@ -166,6 +167,7 @@ function getCity() {
 				arrayNum = returnedData.results.length;
 				arrayNum -= 3;
 				console.log(returnedData.results[arrayNum].formatted_address);
+				return returnedData.results[arrayNum].formatted_address
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
