@@ -1,7 +1,9 @@
 var currentLocation;
-var map;
 
 function init() {
+	var map;
+	var markers;
+
 	var markers = [];
 	var mapOptions = {
 	    center: new google.maps.LatLng(40.7128, -74.02),
@@ -23,7 +25,7 @@ function init() {
 	    },
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
-	map = new google.maps.Map(document.getElementById('googlemaps'), mapOptions);
+	var map = new google.maps.Map(document.getElementById('googlemaps'), mapOptions);
 
 	// customizing location markers & info
 	var locations = [];
@@ -108,7 +110,7 @@ function init() {
 	google.maps.event.addListener(searchBox, 'places_changed', function() {
 		var places = searchBox.getPlaces();
 
-		if (places.length === 0) {
+		if (places.length == 0) {
 			return;
 		}
 		for (var i = 0, marker; marker = markers[i]; i++) {
@@ -152,12 +154,15 @@ function init() {
 google.maps.event.addDomListener(window, 'load', init);
 
 function sendRequest() {
+
     var range = document.getElementById("range-slider")[0].value;
 	getCity(currentLocation.lat(), currentLocation.lng());
 
+    var range = document.getElementById("range-slider");
+
+
 	console.log(currentLocation.lat());
 	console.log(currentLocation.lng());
-	console.log(range);
 }
 
 function getCity() {
@@ -179,3 +184,6 @@ function getCity() {
     xmlhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyDNd5W4yaBOAbaxyrWyM1mPli6CP8GKY44", true);
     xmlhttp.send();
 }
+
+
+
