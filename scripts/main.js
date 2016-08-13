@@ -5,6 +5,7 @@ var directionsService;
 var directionsDisplay;
 var yolo;
 var input;
+var city_name;
 
 function init() {
 	var mapOptions = {
@@ -91,13 +92,14 @@ google.maps.event.addDomListener(window, 'load', init);
 
 function sendRequest() {
     var range = document.getElementById("range-slider")[0].value;
-	var city = getCity();
-	//console.log(city);
-	//getDiscounts(currentLocation.lat(), currentLocation.lng(), city, range);
+	getCity();
+	if (city_name != undefined) {
+		console.log(city_name);
+		getDiscounts(currentLocation.lat(), currentLocation.lng(), city_name, range);
+	}
 }
 
 function getCity() {
-	var city_name;
 	var xmlhttp = new XMLHttpRequest();
 	yolo = xmlhttp;
 	var returnedData;
@@ -109,7 +111,7 @@ function getCity() {
         		returnedData = JSON.parse(xmlhttp.responseText);
 				arrayNum = returnedData.results.length;
 				arrayNum -= 3;
-				city_name = returnedData.results[arrayNum].formatted_address;
+				city_name = returnedData.results[arrayNum].formatted_address;	
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
@@ -117,7 +119,6 @@ function getCity() {
         	else {
             	alert('Something else other than 200 was returned');
         	}
-			return city_name;
     	}
 	};
     xmlhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ currentLocation.lat() + "," + currentLocation.lng() + "&key=AIzaSyDNd5W4yaBOAbaxyrWyM1mPli6CP8GKY44", true);
