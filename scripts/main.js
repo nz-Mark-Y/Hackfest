@@ -4,6 +4,7 @@ var markers = [];
 var directionsService;
 var directionsDisplay;
 var stepDisplay;
+var xmlhttp;
 
 function init() {
 	var mapOptions = {
@@ -170,7 +171,7 @@ function sendRequest() {
 }
 
 function getCity() {
-	var xmlhttp = new XMLHttpRequest();
+	xmlhttp = new XMLHttpRequest();
 	var returnedData;
 	var arrayNum;
 	xmlhttp.onreadystatechange = function() {
