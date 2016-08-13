@@ -1,7 +1,9 @@
 function action() {
 	//console.log(document.getElementById('end').value);
-	if (xmlhttp === undefined) sendRequest();
-	if (xmlhttp.readyState == 4) calculateAndDisplayRoute();
+	if (yolo === undefined) sendRequest();
+	if (yolo.readyState == 4) {
+		calculateAndDisplayRoute();
+	}
 }
 
 function calculateAndDisplayRoute() {
@@ -35,4 +37,6 @@ function showSteps(directionResult) {
 		marker.setMap(map);
 		marker.setPosition(myRoute.steps[i].start_location);
 	}
+	console.log(markers.length);
+	for (i = 0; i < markers.length; i++) console.log(markers[i].position.lat(), markers[i].position.lng());
 }

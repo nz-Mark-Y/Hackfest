@@ -3,10 +3,10 @@ var map;
 var markers = [];
 var directionsService;
 var directionsDisplay;
-var stepDisplay;
-var city_name;
-var xmlhttp;
+var yolo;
 var input;
+var city_name;
+var returnedDiscounts;
 
 function init() {
 	var mapOptions = {
@@ -37,9 +37,6 @@ function init() {
 
 	// Create a renderer for directions and bind it to the map.
 	directionsDisplay = new google.maps.DirectionsRenderer({map: map});
-
-	// Instantiate an info window to hold step text.
-	stepDisplay = new google.maps.InfoWindow();
 
 	// Create the search box and link it to the UI element.
 	input = /** @type {HTMLInputElement} */(document.getElementById('pac-input'));
@@ -96,23 +93,24 @@ google.maps.event.addDomListener(window, 'load', init);
 
 function sendRequest() {
     var range = document.getElementById("range-slider")[0].value;
-	var city = getCity(currentLocation.lat(), currentLocation.lng());
+	getCity(range);
 }
 
-function getCity() {
-	xmlhttp = new XMLHttpRequest();
-	var returnedData;
+function getCity(range) {
+	var xmlhttp = new XMLHttpRequest();
+	yolo = xmlhttp;
+	var returnedCity;
 	var arrayNum;
 	xmlhttp.onreadystatechange = function() {
 		// http://www.w3schools.com/xml/dom_httprequest.asp
     	if (xmlhttp.readyState == 4 ) {
         	if (xmlhttp.status == 200) {
-        		returnedData = JSON.parse(xmlhttp.responseText);
-				arrayNum = returnedData.results.length;
+        		returnedCity = JSON.parse(xmlhttp.responseText);
+				arrayNum = returnedCity.results.length;
 				arrayNum -= 3;
-				city_name = returnedData.results[arrayNum].formatted_address;
+				city_name = returnedCity.results[arrayNum].formatted_address;	
 				console.log(city_name);
-				return returnedData.results[arrayNum].formatted_address;
+				getDiscounts(currentLocation.lat(), currentLocation.lng(), city_name, range);
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
@@ -128,7 +126,7 @@ function getCity() {
 
 function placingMarker() {
 	// customizing location markers & info
-	var locations = [["harambe", "gorilla", "0800838383", "harame@limbo.com", "www.google.com", 40.7128, -74.02]];
+	var locations = [["#JusticeForHarambe", "gorilla god", "0800838383", "harame@limbo.com", "www.google.com", 40.7128, -74.02]];
 	for (i = 0; i < locations.length; i++) {
 		if (locations[i][1] == 'undefined') {
 			description = '';
@@ -196,3 +194,24 @@ function placingMarker() {
 		});
 	}
 }
+
+function getDiscounts(lat, lng, city_name, radius) {
+	var xmlhttp2 = new XMLHttpRequest();
+	xmlhttp2.onreadystatechange = function() {
+    	if (xmlhttp2.readyState == 4 ) {
+        	if (xmlhttp2.status == 200) {
+        		returnedDiscounts = JSON.parse(xmlhttp2.responseText);
+				console.log(returnedDiscounts);
+        	}
+        	else if (xmlhttp2.status == 400) {
+            	alert('There was an error 400');
+        	}
+        	else {
+            	alert('Something else other than 200 was returned');
+        	}
+    	}
+	};
+    xmlhttp2.open("GET", "https://murmuring-castle-89517.herokuapp.com/getdealsforlocation?lat=" + lat + "&lon=" + lng + "&location=" + city_name + "&radius_filter=" + radius, true);
+    xmlhttp2.send();
+}
+
