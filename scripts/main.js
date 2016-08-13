@@ -6,7 +6,7 @@ var directionsDisplay;
 var stepDisplay;
 var city_name;
 var xmlhttp;
-var returnedData;
+var input;
 
 function init() {
 	var mapOptions = {
@@ -114,11 +114,10 @@ function init() {
 	}
 
 	// Create the search box and link it to the UI element.
-	var input = /** @type {HTMLInputElement} */(document.getElementById('pac-input'));
+	input = /** @type {HTMLInputElement} */(document.getElementById('pac-input'));
 	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-	var searchBox = new google.maps.places.SearchBox(
-	/** @type {HTMLInputElement} */(input));
+	var searchBox = new google.maps.places.SearchBox(/** @type {HTMLInputElement} */(input));
 
 	// Listen for the event fired when the user selects an item from the pick list. Retrieve the matching places for that item.
 	google.maps.event.addListener(searchBox, 'places_changed', function() {
@@ -174,6 +173,7 @@ function sendRequest() {
 
 function getCity() {
 	xmlhttp = new XMLHttpRequest();
+	var returnedData;
 	var arrayNum;
 	xmlhttp.onreadystatechange = function() {
 		// http://www.w3schools.com/xml/dom_httprequest.asp
