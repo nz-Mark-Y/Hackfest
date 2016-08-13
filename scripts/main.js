@@ -41,78 +41,6 @@ function init() {
 	// Instantiate an info window to hold step text.
 	stepDisplay = new google.maps.InfoWindow();
 
-	// customizing location markers & info
-	var locations = [];
-	for (i = 0; i < locations.length; i++) {
-		if (locations[i][1] == 'undefined') {
-			description = '';
-		} else {
-			description = locations[i][1];
-		}
-		if (locations[i][2] == 'undefined') {
-			telephone = '';
-		} else {
-			telephone = locations[i][2];
-		}
-		if (locations[i][3] == 'undefined') {
-			email = '';
-		} else {
-			email = locations[i][3];
-		}
-		if (locations[i][4] == 'undefined') {
-			web = '';
-		} else {
-			web = locations[i][4];
-		}
-		marker = new google.maps.Marker({
-			icon: 'https://mapbuildr.com/assets/img/markers/solid-pin-red.png',
-			position: new google.maps.LatLng(locations[i][5], locations[i][6]),
-			map: map,
-			title: locations[i][0],
-			desc: description,
-			tel: telephone,
-			email: email,
-			web: web
-		});
-		if (web.substring(0, 7) != "http://") {
-			link = "http://" + web;
-		} else {
-			link = web;
-		}
-		bindInfoWindow(marker, map, locations[i][0], description, telephone, email, web, link);
-	}
-
-	function bindInfoWindow(marker, map, title, desc, telephone, email, web, link) {
-		var infoWindowVisible = (function() {
-			var currentlyVisible = false;
-			return function(visible) {
-				if (visible !== undefined) {
-					currentlyVisible = visible;
-				}
-				return currentlyVisible;
-			};
-		}());
-		iw = new google.maps.InfoWindow();
-		google.maps.event.addListener(marker, 'click', function() {
-			if (infoWindowVisible()) {
-				iw.close();
-				infoWindowVisible(false);
-			} else {
-				// styling of marker text (fix when have time)
-				var html = "<div style='color:#000;background-color:#fff;padding:5px;width:150px;'><h4>" + title + "</h4><p>" + desc + "<p><p>" + telephone + "<p><a href='" + link + "'' >" + web + "<a></div>";
-
-				iw = new google.maps.InfoWindow({
-					content: html
-				});
-				iw.open(map, marker);
-				infoWindowVisible(true);
-			}
-		});
-		google.maps.event.addListener(iw, 'closeclick', function() {
-			infoWindowVisible(false);
-		});
-	}
-
 	// Create the search box and link it to the UI element.
 	input = /** @type {HTMLInputElement} */(document.getElementById('pac-input'));
 	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -196,4 +124,75 @@ function getCity() {
 	};
     xmlhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ currentLocation.lat() + "," + currentLocation.lng() + "&key=AIzaSyDNd5W4yaBOAbaxyrWyM1mPli6CP8GKY44", true);
     xmlhttp.send();
+}
+
+function placingMarker() {
+	// customizing location markers & info
+	var locations = [["harambe", "gorilla", "0800838383", "harame@limbo.com", "www.google.com", 40.7128, -74.02]];
+	for (i = 0; i < locations.length; i++) {
+		if (locations[i][1] == 'undefined') {
+			description = '';
+		} else {
+			description = locations[i][1];
+		}
+		if (locations[i][2] == 'undefined') {
+			telephone = '';
+		} else {
+			telephone = locations[i][2];
+		}
+		if (locations[i][3] == 'undefined') {
+			email = '';
+		} else {
+			email = locations[i][3];
+		}
+		if (locations[i][4] == 'undefined') {
+			web = '';
+		} else {
+			web = locations[i][4];
+		}
+		marker = new google.maps.Marker({
+			icon: 'https://mapbuildr.com/assets/img/markers/solid-pin-red.png',
+			position: new google.maps.LatLng(locations[i][5], locations[i][6]),
+			map: map,
+			title: locations[i][0],
+			desc: description,
+			tel: telephone,
+			email: email,
+			web: web
+		});
+		if (web.substring(0, 7) != "http://") {
+			link = "http://" + web;
+		} else {
+			link = web;
+		}
+		bindInfoWindow(marker, map, locations[i][0], description, telephone, email, web, link);
+	}
+
+	function bindInfoWindow(marker, map, title, desc, telephone, email, web, link) {
+		var infoWindowVisible = (function() {
+			var currentlyVisible = false;
+			return function(visible) {
+				if (visible !== undefined) {
+					currentlyVisible = visible;
+				}
+				return currentlyVisible;
+			};
+		}());
+		iw = new google.maps.InfoWindow();
+		google.maps.event.addListener(marker, 'click', function() {
+			if (infoWindowVisible()) {
+				iw.close();
+				infoWindowVisible(false);
+			} else {
+				// styling of marker text (fix when have time)
+				var html = "<div style='color:#000;background-color:#fff;padding:5px;width:150px;'><h4>" + title + "</h4><p>" + desc + "<p><p>" + telephone + "<p><a href='" + link + "'' >" + web + "<a></div>";
+
+				iw = new google.maps.InfoWindow({
+					content: html
+				});
+				iw.open(map, marker);
+				infoWindowVisible(true);
+			}
+		});
+	}
 }
