@@ -151,8 +151,13 @@ function init() {
 google.maps.event.addDomListener(window, 'load', init);
 
 function sendRequest() {
-    var range = document.getElementById("range-slider");
+    var range = document.getElementById("range-slider")[0].value;
 
 	console.log(currentLocation.lat());
 	console.log(currentLocation.lng());
+	console.log(range);
+}
+
+function getCity() {
+
 }
