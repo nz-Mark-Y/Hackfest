@@ -93,6 +93,7 @@ google.maps.event.addDomListener(window, 'load', init);
 function sendRequest() {
     var range = document.getElementById("range-slider")[0].value;
 	var city = getCity(currentLocation.lat(), currentLocation.lng());
+	getDiscounts(currentLocation.lat(), currentLocation.lng(), city, range);
 }
 
 function getCity() {
@@ -193,7 +194,7 @@ function placingMarker() {
 	}
 }
 
-function getDiscounts() {
+function getDiscounts(lat, lng, city_name, radius) {
 	xmlhttp = new XMLHttpRequest();
 	var returnedData;
 	var arrayNum;
@@ -201,6 +202,7 @@ function getDiscounts() {
     	if (xmlhttp.readyState == 4 ) {
         	if (xmlhttp.status == 200) {
         		returnedData = JSON.parse(xmlhttp.responseText);
+				console.log(returnedData);
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
@@ -210,6 +212,6 @@ function getDiscounts() {
         	}
     	}
 	};
-    xmlhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ currentLocation.lat() + "," + currentLocation.lng() + "&key=AIzaSyDNd5W4yaBOAbaxyrWyM1mPli6CP8GKY44", true);
+    xmlhttp.open("GET", "https://murmuring-castle-89517.herokuapp.com/getdealsforlocation?lat=" + lat + "&lon=" + lng + "&location=" + city_name + "&radius_filter=" + radius, true);
     xmlhttp.send();
 }
