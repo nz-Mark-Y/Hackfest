@@ -5,6 +5,7 @@ var directionsService;
 var directionsDisplay;
 var stepDisplay;
 var city_name;
+var xmlhttp;
 
 function init() {
 	var mapOptions = {
@@ -171,11 +172,12 @@ function sendRequest() {
 }
 
 function getCity() {
-	var xmlhttp = new XMLHttpRequest();
+	xmlhttp = new XMLHttpRequest();
 	var returnedData;
 	var arrayNum;
 	xmlhttp.onreadystatechange = function() {
-    	if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+		// http://www.w3schools.com/xml/dom_httprequest.asp
+    	if (xmlhttp.readyState == 4 ) {
         	if (xmlhttp.status == 200) {
         		returnedData = JSON.parse(xmlhttp.responseText);
 				arrayNum = returnedData.results.length;
