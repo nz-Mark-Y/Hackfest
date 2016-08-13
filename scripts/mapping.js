@@ -1,3 +1,5 @@
+var currentLocation;
+
 function init() {
 	var markers = [];
 	var mapOptions = {
@@ -141,7 +143,7 @@ function init() {
 					position: place.geometry.location
 				});
 
-				console.log(marker.position);
+				currentLocation = marker.position;
 
 				markers.push(marker);
 				bounds.extend(place.geometry.location);
