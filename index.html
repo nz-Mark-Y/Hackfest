@@ -6,12 +6,14 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNd5W4yaBOAbaxyrWyM1mPli6CP8GKY44&libraries=places"></script>
     <link href="styles/style.css" rel="stylesheet" />
     <script src="scripts/mapping.js"></script>
+    <script src="scripts/main.js"></script>
 </head>
 <body>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <form id="range-slider">
-        <input type="range" name="points" min="0" max="10">
+        <input type="range" name="points" min="0" max="20" step="2">
     </form>
+    <button id="sendButton" onclick="sendRequest()">Find Deals!</button>
     <div id="googlemaps"></div>
     
 </body>
