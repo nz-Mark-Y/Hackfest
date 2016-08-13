@@ -1,8 +1,5 @@
-google.maps.event.addDomListener(window, 'load', init);
-var map;
-var markers = [];
-
 function init() {
+	var markers = [];
 	var mapOptions = {
 	    center: new google.maps.LatLng(40.7128, -74.02),
 	    zoom: 12,
@@ -144,8 +141,9 @@ function init() {
 					position: place.geometry.location
 				});
 
-				markers.push(marker);
+				console.log(marker.position);
 
+				markers.push(marker);
 				bounds.extend(place.geometry.location);
 			}
 			map.fitBounds(bounds);
@@ -157,3 +155,5 @@ function init() {
 		searchBox.setBounds(bounds);
 	});
 }
+
+google.maps.event.addDomListener(window, 'load', init);
