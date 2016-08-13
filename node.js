@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var OAuth = require('oauth-request');
+app.set('port', (process.env.PORT || 3000));
 
 app.get('/getdealsforlocation', function (req, res) {
   var twitter = OAuth({
@@ -18,9 +19,16 @@ app.get('/getdealsforlocation', function (req, res) {
 //list user timeline
   twitter.get('https://api.yelp.com/v2/search?cll='+ req.query.lat + ',' + req.query.lon +'&location=' + req.query.location + '&deals_filter=true&term=food&radius_filter='+req.query.radius_filter, function(err, thing, data) {
     res.setHeader('Content-Type','application/json');
+      if(err){
+          console.log(err);
+      }
       var filteredData = filterData(JSON.parse(data))//(data);
       res.send(filteredData);//data);
   });
+});
+
+app.get('/hello', function(request, response) {
+    response.send('Hello World!')
 });
 
 function filterData(data) {
@@ -39,9 +47,6 @@ function filterData(data) {
 
 }
 
-
-
-
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(app.get('port'), function () {
+  console.log('Example app listening on port ' + app.get('port') + '!');
 });
