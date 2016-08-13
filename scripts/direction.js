@@ -5,9 +5,9 @@
         var directionsService = new google.maps.DirectionsService;
 
         // Create a map and center it on Manhattan.
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var map = new google.maps.Map(document.getElementById('googlemaps'), {
           zoom: 13,
-          center: {lat: 40.771, lng: -73.974}
+          center: {lat: 40.7128, lng: -74.02}
         });
 
         // Create a renderer for directions and bind it to the map.
@@ -24,7 +24,7 @@
           calculateAndDisplayRoute(
               directionsDisplay, directionsService, markerArray, stepDisplay, map);
         };
-        document.getElementById('start').addEventListener('change', onChangeHandler);
+        document.getElementById('pac-input').addEventListener('change', onChangeHandler);
         document.getElementById('end').addEventListener('change', onChangeHandler);
       }
 
@@ -38,7 +38,7 @@
         // Retrieve the start and end locations and create a DirectionsRequest using
         // WALKING directions.
         directionsService.route({
-          origin: document.getElementById('start').value,
+          origin: document.getElementById('pac-input').value,
           destination: document.getElementById('end').value,
           travelMode: 'WALKING'
         }, function(response, status) {
