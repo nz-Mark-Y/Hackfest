@@ -192,3 +192,24 @@ function placingMarker() {
 		});
 	}
 }
+
+function getDiscounts() {
+	xmlhttp = new XMLHttpRequest();
+	var returnedData;
+	var arrayNum;
+	xmlhttp.onreadystatechange = function() {
+    	if (xmlhttp.readyState == 4 ) {
+        	if (xmlhttp.status == 200) {
+        		returnedData = JSON.parse(xmlhttp.responseText);
+        	}
+        	else if (xmlhttp.status == 400) {
+            	alert('There was an error 400');
+        	}
+        	else {
+            	alert('Something else other than 200 was returned');
+        	}
+    	}
+	};
+    xmlhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ currentLocation.lat() + "," + currentLocation.lng() + "&key=AIzaSyDNd5W4yaBOAbaxyrWyM1mPli6CP8GKY44", true);
+    xmlhttp.send();
+}
