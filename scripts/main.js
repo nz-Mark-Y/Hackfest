@@ -153,6 +153,7 @@ google.maps.event.addDomListener(window, 'load', init);
 
 function sendRequest() {
     var range = document.getElementById("range-slider")[0].value;
+	getCity(currentLocation.lat(), currentLocation.lng());
 
 	console.log(currentLocation.lat());
 	console.log(currentLocation.lng());
@@ -160,5 +161,21 @@ function sendRequest() {
 }
 
 function getCity() {
-
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+    	if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+        	if (xmlhttp.status == 200) {
+        		var returnedData = JSON.parse(xmlhttp.responseText);
+				console.log(returnedData);
+        	}
+        	else if (xmlhttp.status == 400) {
+            	alert('There was an error 400');
+        	}
+        	else {
+            	alert('something else other than 200 was returned');
+        	}
+    	}
+	};
+    xmlhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyDNd5W4yaBOAbaxyrWyM1mPli6CP8GKY44", true);
+    xmlhttp.send();
 }
