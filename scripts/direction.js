@@ -1,7 +1,8 @@
 function action() {
 	//console.log(document.getElementById('end').value);
-	sendRequest();
-	calculateAndDisplayRoute(directionsDisplay, directionsService, markers, stepDisplay, map);
+	console.log(returnedData);
+	if (xmlhttp === undefined) sendRequest();
+	if (xmlhttp.readyState == 4) calculateAndDisplayRoute(directionsDisplay, directionsService, markers, stepDisplay, map);
 }
 
 function calculateAndDisplayRoute(directionsDisplay, directionsService, markers, stepDisplay, map) {

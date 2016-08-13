@@ -6,6 +6,7 @@ var directionsDisplay;
 var stepDisplay;
 var city_name;
 var xmlhttp;
+var returnedData;
 
 function init() {
 	var mapOptions = {
@@ -173,7 +174,6 @@ function sendRequest() {
 
 function getCity() {
 	xmlhttp = new XMLHttpRequest();
-	var returnedData;
 	var arrayNum;
 	xmlhttp.onreadystatechange = function() {
 		// http://www.w3schools.com/xml/dom_httprequest.asp
