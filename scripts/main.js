@@ -108,13 +108,9 @@ function getCity(range) {
         		returnedCity = JSON.parse(xmlhttp.responseText);
 				arrayNum = returnedCity.results.length;
 				arrayNum -= 3;
-<<<<<<< Updated upstream
-				city_name = returnedData.results[arrayNum].formatted_address;
-=======
 				city_name = returnedCity.results[arrayNum].formatted_address;	
 				console.log(city_name);
 				getDiscounts(currentLocation.lat(), currentLocation.lng(), city_name, range);
->>>>>>> Stashed changes
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
