@@ -1,5 +1,6 @@
 function sendRequest() {
-    var range = document.getElementById("range-slider").value;
+    var range = document.getElementById("range-slider");
 
 	console.log(currentLocation);
+	console.log(range.value);
 }
