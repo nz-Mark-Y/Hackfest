@@ -1,4 +1,4 @@
 function sendRequest() {
-    console.log("yolo");
-    var lat = 
+    var range = document.getElementById("range-slider").value;
+
 }
