@@ -211,7 +211,7 @@ function getDiscounts(lat, lng, city_name, radius) {
         	}
     	}
 	};
-    xmlhttp2.open("GET", "https://murmuring-castle-89517.herokuapp.com/getdealsforlocation?lat=" + lat + "&lon=" + lng + "&location=" + city_name + "&radius_filter=" + radius, true);
+    xmlhttp2.open("GET", "https://vast-bastion-98645.herokuapp.com/getdealsforlocation?lat=" + lat + "&lon=" + lng + "&location=" + city_name + "&radius_filter=" + (radius*1000), true);
     xmlhttp2.send();
 }
 
