@@ -6,6 +6,7 @@ var directionsDisplay;
 var yolo;
 var input;
 var city_name;
+var returnedDiscounts;
 
 function init() {
 	var mapOptions = {
@@ -92,26 +93,28 @@ google.maps.event.addDomListener(window, 'load', init);
 
 function sendRequest() {
     var range = document.getElementById("range-slider")[0].value;
-	getCity();
-	if (city_name != undefined) {
-		console.log(city_name);
-		getDiscounts(currentLocation.lat(), currentLocation.lng(), city_name, range);
-	}
+	getCity(range);
 }
 
-function getCity() {
+function getCity(range) {
 	var xmlhttp = new XMLHttpRequest();
 	yolo = xmlhttp;
-	var returnedData;
+	var returnedCity;
 	var arrayNum;
 	xmlhttp.onreadystatechange = function() {
 		// http://www.w3schools.com/xml/dom_httprequest.asp
     	if (xmlhttp.readyState == 4 ) {
         	if (xmlhttp.status == 200) {
-        		returnedData = JSON.parse(xmlhttp.responseText);
-				arrayNum = returnedData.results.length;
+        		returnedCity = JSON.parse(xmlhttp.responseText);
+				arrayNum = returnedCity.results.length;
 				arrayNum -= 3;
+<<<<<<< Updated upstream
 				city_name = returnedData.results[arrayNum].formatted_address;
+=======
+				city_name = returnedCity.results[arrayNum].formatted_address;	
+				console.log(city_name);
+				getDiscounts(currentLocation.lat(), currentLocation.lng(), city_name, range);
+>>>>>>> Stashed changes
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
@@ -197,16 +200,14 @@ function placingMarker() {
 }
 
 function getDiscounts(lat, lng, city_name, radius) {
-	xmlhttp = new XMLHttpRequest();
-	var returnedData;
-	var arrayNum;
-	xmlhttp.onreadystatechange = function() {
-    	if (xmlhttp.readyState == 4 ) {
-        	if (xmlhttp.status == 200) {
-        		returnedData = JSON.parse(xmlhttp.responseText);
-				console.log(returnedData);
+	var xmlhttp2 = new XMLHttpRequest();
+	xmlhttp2.onreadystatechange = function() {
+    	if (xmlhttp2.readyState == 4 ) {
+        	if (xmlhttp2.status == 200) {
+        		returnedDiscounts = JSON.parse(xmlhttp2.responseText);
+				console.log(returnedDiscounts);
         	}
-        	else if (xmlhttp.status == 400) {
+        	else if (xmlhttp2.status == 400) {
             	alert('There was an error 400');
         	}
         	else {
@@ -214,6 +215,7 @@ function getDiscounts(lat, lng, city_name, radius) {
         	}
     	}
 	};
-    xmlhttp.open("GET", "https://murmuring-castle-89517.herokuapp.com/getdealsforlocation?lat=" + lat + "&lon=" + lng + "&location=" + city_name + "&radius_filter=" + radius, true);
-    xmlhttp.send();
+    xmlhttp2.open("GET", "https://murmuring-castle-89517.herokuapp.com/getdealsforlocation?lat=" + lat + "&lon=" + lng + "&location=" + city_name + "&radius_filter=" + radius, true);
+    xmlhttp2.send();
 }
+
