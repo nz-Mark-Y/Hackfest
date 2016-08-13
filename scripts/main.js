@@ -4,7 +4,6 @@ var markers = [];
 var directionsService;
 var directionsDisplay;
 var stepDisplay;
-var xmlhttp;
 
 function init() {
 	var mapOptions = {
@@ -171,7 +170,7 @@ function sendRequest() {
 }
 
 function getCity() {
-	xmlhttp = new XMLHttpRequest();
+	var xmlhttp = new XMLHttpRequest();
 	var returnedData;
 	var arrayNum;
 	xmlhttp.onreadystatechange = function() {
@@ -187,7 +186,7 @@ function getCity() {
             	alert('There was an error 400');
         	}
         	else {
-            	alert('something else other than 200 was returned');
+            	alert('Something else other than 200 was returned');
         	}
     	}
 	};
