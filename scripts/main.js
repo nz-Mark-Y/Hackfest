@@ -23,7 +23,7 @@ function init() {
 	    },
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
-	map = new google.maps.Map(document.getElementById('googlemaps'), mapOptions);
+	var map = new google.maps.Map(document.getElementById('googlemaps'), mapOptions);
 
 	// customizing location markers & info
 	var locations = [];
@@ -154,10 +154,6 @@ google.maps.event.addDomListener(window, 'load', init);
 function sendRequest() {
     var range = document.getElementById("range-slider")[0].value;
 	getCity(currentLocation.lat(), currentLocation.lng());
-
-	console.log(currentLocation.lat());
-	console.log(currentLocation.lng());
-	console.log(range);
 }
 
 function getCity() {
