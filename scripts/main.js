@@ -108,8 +108,7 @@ function getCity(range) {
         		returnedCity = JSON.parse(xmlhttp.responseText);
 				arrayNum = returnedCity.results.length;
 				arrayNum -= 3;
-				city_name = returnedCity.results[arrayNum].formatted_address;	
-				console.log(city_name);
+				city_name = returnedCity.results[arrayNum].formatted_address;
 				getDiscounts(currentLocation.lat(), currentLocation.lng(), city_name, range);
         	}
         	else if (xmlhttp.status == 400) {
@@ -201,7 +200,7 @@ function getDiscounts(lat, lng, city_name, radius) {
     	if (xmlhttp2.readyState == 4 ) {
         	if (xmlhttp2.status == 200) {
         		returnedDiscounts = JSON.parse(xmlhttp2.responseText);
-				console.log(returnedDiscounts);
+				action();
         	}
         	else if (xmlhttp2.status == 400) {
             	alert('There was an error 400');
@@ -214,4 +213,3 @@ function getDiscounts(lat, lng, city_name, radius) {
     xmlhttp2.open("GET", "https://vast-bastion-98645.herokuapp.com/getdealsforlocation?lat=" + lat + "&lon=" + lng + "&location=" + city_name + "&radius_filter=" + (radius*1000), true);
     xmlhttp2.send();
 }
-

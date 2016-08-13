@@ -1,14 +1,32 @@
 function action() {
 	//console.log(document.getElementById('end').value);
 	if (yolo === undefined) sendRequest();
-	if (yolo.readyState == 4) {
-		calculateAndDisplayRoute();
+	var bounds = new google.maps.LatLngBounds();
+	for (var i = 0; i < returnedDiscounts.length; i++) {
+		// Create a marker for each place
+		var position = new google.maps.LatLng(returnedDiscounts[i].coordinates.latitude, returnedDiscounts[i].coordinates.longitude);
+		bounds.extend(position);
+		var marker = new google.maps.Marker({
+			map: map,
+			icon: 'https://mapbuildr.com/assets/img/markers/solid-pin-red.png',
+			title: returnedDiscounts[i].name,
+			position: position
+		});
+		marker.setMap(map);
+		markers.push(marker);
 	}
+	/*if (yolo.readyState == 4) {
+		calculateAndDisplayRoute();
+	}*/
+	map.fitBounds(bounds);
 }
 
 function calculateAndDisplayRoute() {
     // First, remove any existing markers from the map
-    markers[0].setMap(null);
+	if (markers.length !== 0) {
+		for (i = 0; i < markers.length; i++) markers[i].setMap(null);
+	}
+	console.log(markers[0]);
 
 	// Retrieve the start and end locations and create a DirectionsRequest using travelMode value
 	// travelMode can be DRIVING, BICYLING, TRANSIT, WALKING
@@ -37,6 +55,4 @@ function showSteps(directionResult) {
 		marker.setMap(map);
 		marker.setPosition(myRoute.steps[i].start_location);
 	}
-	console.log(markers.length);
-	for (i = 0; i < markers.length; i++) console.log(markers[i].position.lat(), markers[i].position.lng());
 }
