@@ -177,6 +177,6 @@ function getCity() {
         	}
     	}
 	};
-    xmlhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ currentLocation.lat() + "," + currentlocation.lng() + "&key=AIzaSyDNd5W4yaBOAbaxyrWyM1mPli6CP8GKY44", true);
+    xmlhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ currentLocation.lat() + "," + currentLocation.lng() + "&key=AIzaSyDNd5W4yaBOAbaxyrWyM1mPli6CP8GKY44", true);
     xmlhttp.send();
 }
