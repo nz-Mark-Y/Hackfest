@@ -163,8 +163,9 @@ function getCity() {
     	if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
         	if (xmlhttp.status == 200) {
         		returnedData = JSON.parse(xmlhttp.responseText);
-				console.log(returnedData.results[8]);
-
+				arrayNum = returnedData.results.length;
+				arrayNum -= 3;
+				console.log(returnedData.results[arrayNum].formatted_address);
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
@@ -174,6 +175,6 @@ function getCity() {
         	}
     	}
 	};
-    xmlhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyDNd5W4yaBOAbaxyrWyM1mPli6CP8GKY44", true);
+    xmlhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ currentLocation.lat() + "," + currentlocation.lng() + "&key=AIzaSyDNd5W4yaBOAbaxyrWyM1mPli6CP8GKY44", true);
     xmlhttp.send();
 }
