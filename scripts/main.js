@@ -153,6 +153,6 @@ google.maps.event.addDomListener(window, 'load', init);
 function sendRequest() {
     var range = document.getElementById("range-slider");
 
-	console.log('' + currentLocation);
-	console.log('' + range.value);
+	console.log(currentLocation.lat());
+	console.log(currentLocation.lng());
 }
