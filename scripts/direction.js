@@ -1,10 +1,10 @@
 function action() {
 	//console.log(document.getElementById('end').value);
 	if (xmlhttp === undefined) sendRequest();
-	if (xmlhttp.readyState == 4) calculateAndDisplayRoute(directionsDisplay, directionsService, markers, stepDisplay, map);
+	if (xmlhttp.readyState == 4) calculateAndDisplayRoute();
 }
 
-function calculateAndDisplayRoute(directionsDisplay, directionsService, markers, stepDisplay, map) {
+function calculateAndDisplayRoute() {
     // First, remove any existing markers from the map
     markers[0].setMap(null);
 
@@ -19,14 +19,14 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService, markers,
 		// markers for each step.
 		if (status === 'OK') {
 			directionsDisplay.setDirections(response);
-			showSteps(response, markers, stepDisplay, map);
+			showSteps(response);
 		} else {
 			window.alert('Directions request failed due to ' + status);
 		}
 	});
 }
 
-function showSteps(directionResult, markers, stepDisplay, map) {
+function showSteps(directionResult) {
 	// For each step, place a marker, and add the text to the marker's infowindow.
 	// Also attach the marker to an array so we can keep track of it and remove it when calculating new routes.
 	var myRoute = directionResult.routes[0].legs[0];
