@@ -1,13 +1,10 @@
+function test() {
+	console.log(map);
+}
+
 function initMap() {
 
-	// Instantiate a directions service.
-	var directionsService = new google.maps.DirectionsService();
-
-	// Create a renderer for directions and bind it to the map.
-	var directionsDisplay = new google.maps.DirectionsRenderer({map: map});
-
-	// Instantiate an info window to hold step text.
-	var stepDisplay = new google.maps.InfoWindow();
+	
 
 	// Display the route between the initial start and end selections.
 	calculateAndDisplayRoute(directionsDisplay, directionsService, markers, stepDisplay, map);

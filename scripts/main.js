@@ -1,6 +1,9 @@
 var currentLocation;
 var map;
 var markers = [];
+var directionsService;
+var directionsDisplay;
+var stepDisplay;
 
 function init() {
 	var mapOptions = {
@@ -23,7 +26,17 @@ function init() {
 	    },
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
+
+	// Instantiate a directions service.
+	directionsService = new google.maps.DirectionsService();
+
 	map = new google.maps.Map(document.getElementById('googlemaps'), mapOptions);
+
+	// Create a renderer for directions and bind it to the map.
+	directionsDisplay = new google.maps.DirectionsRenderer({map: map});
+
+	// Instantiate an info window to hold step text.
+	stepDisplay = new google.maps.InfoWindow();
 
 	// customizing location markers & info
 	var locations = [];
