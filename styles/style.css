@@ -29,7 +29,7 @@
   text-overflow: ellipsis;
   width: 300px;
 }
-#pac-input:focus {
+#pac-input :focus {
   border-color: #4d90fe;
 }
 #range-slider {
