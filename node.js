@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var OAuth = require('oauth-request');
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 3000));// checks for environment variable port
 
 app.get('/getdealsforlocation', function (req, res) {
   var twitter = OAuth({
@@ -47,6 +47,6 @@ function filterData(data) {
 
 }
 
-app.listen(app.get('port'), function () {
+app.listen(app.get('port'), function () {//listens on allocated port
   console.log('Example app listening on port ' + app.get('port') + '!');
 });
