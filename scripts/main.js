@@ -162,11 +162,13 @@ function sendRequest() {
 
 function getCity() {
 	var xmlhttp = new XMLHttpRequest();
+	var returnedData;
 	xmlhttp.onreadystatechange = function() {
     	if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
         	if (xmlhttp.status == 200) {
-        		var returnedData = JSON.parse(xmlhttp.responseText);
-				console.log(returnedData);
+        		returnedData = JSON.parse(xmlhttp.responseText);
+				console.log(returnedData.results[8]);
+				
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
