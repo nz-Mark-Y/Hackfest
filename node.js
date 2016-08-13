@@ -18,9 +18,16 @@ app.get('/getdealsforlocation', function (req, res) {
 //list user timeline
   twitter.get('https://api.yelp.com/v2/search?cll='+ req.query.lat + ',' + req.query.lon +'&location=' + req.query.location + '&deals_filter=true&term=food&radius_filter='+req.query.radius_filter, function(err, thing, data) {
     res.setHeader('Content-Type','application/json');
+      if(err){
+          console.log(err);
+      }
       var filteredData = filterData(JSON.parse(data))//(data);
       res.send(filteredData);//data);
   });
+});
+
+app.get('/hello', function(request, response) {
+    response.send('Hello World!')
 });
 
 function filterData(data) {
