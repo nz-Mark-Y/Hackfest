@@ -111,7 +111,7 @@ function getCity() {
         		returnedData = JSON.parse(xmlhttp.responseText);
 				arrayNum = returnedData.results.length;
 				arrayNum -= 3;
-				city_name = returnedData.results[arrayNum].formatted_address;	
+				city_name = returnedData.results[arrayNum].formatted_address;
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
@@ -127,7 +127,7 @@ function getCity() {
 
 function placingMarker() {
 	// customizing location markers & info
-	var locations = [["harambe", "gorilla", "0800838383", "harame@limbo.com", "www.google.com", 40.7128, -74.02]];
+	var locations = [["#JusticeForHarambe", "gorilla god", "0800838383", "harame@limbo.com", "www.google.com", 40.7128, -74.02]];
 	for (i = 0; i < locations.length; i++) {
 		if (locations[i][1] == 'undefined') {
 			description = '';
