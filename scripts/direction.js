@@ -29,8 +29,6 @@ function initMap() {
 
 }
 
-
-
 function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
   directionsService.route({
     origin: pointA,
