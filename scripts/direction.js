@@ -2,13 +2,13 @@ function initMap() {
 	var markerArray = [];
 
 	// Instantiate a directions service.
-	var directionsService = new google.maps.DirectionsService;
+	var directionsService = new google.maps.DirectionsService();
 
 	// Create a renderer for directions and bind it to the map.
 	var directionsDisplay = new google.maps.DirectionsRenderer({map: map});
 
 	// Instantiate an info window to hold step text.
-	var stepDisplay = new google.maps.InfoWindow;
+	var stepDisplay = new google.maps.InfoWindow();
 
 	// Display the route between the initial start and end selections.
 	calculateAndDisplayRoute(directionsDisplay, directionsService, markerArray, stepDisplay, map);
@@ -50,7 +50,7 @@ function showSteps(directionResult, markerArray, stepDisplay, map) {
 	// Also attach the marker to an array so we can keep track of it and remove it when calculating new routes.
 	var myRoute = directionResult.routes[0].legs[0];
 	for (var i = 0; i < myRoute.steps.length; i++) {
-		var marker = markerArray[i] = markerArray[i] || new google.maps.Marker;
+		var marker = markerArray[i] = markerArray[i] || new google.maps.Marker();
 		marker.setMap(map);
 		marker.setPosition(myRoute.steps[i].start_location);
 		attachInstructionText(stepDisplay, marker, myRoute.steps[i].instructions, map);
