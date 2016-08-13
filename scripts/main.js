@@ -1,8 +1,8 @@
 var currentLocation;
 var map;
+var markers = [];
 
 function init() {
-	var markers = [];
 	var mapOptions = {
 	    center: new google.maps.LatLng(40.7128, -74.02),
 	    zoom: 12,
