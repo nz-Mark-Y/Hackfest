@@ -23,7 +23,7 @@ function init() {
 	    },
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
-	var map = new google.maps.Map(document.getElementById('googlemaps'), mapOptions);
+	map = new google.maps.Map(document.getElementById('googlemaps'), mapOptions);
 
 	// customizing location markers & info
 	var locations = [];
@@ -164,7 +164,7 @@ function getCity() {
         	if (xmlhttp.status == 200) {
         		returnedData = JSON.parse(xmlhttp.responseText);
 				console.log(returnedData.results[8]);
-				
+
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
