@@ -1,6 +1,5 @@
 function action() {
 	//console.log(document.getElementById('end').value);
-	console.log(returnedData);
 	if (xmlhttp === undefined) sendRequest();
 	if (xmlhttp.readyState == 4) calculateAndDisplayRoute(directionsDisplay, directionsService, markers, stepDisplay, map);
 }
@@ -12,8 +11,8 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService, markers,
 	// Retrieve the start and end locations and create a DirectionsRequest using travelMode value
 	// travelMode can be DRIVING, BICYLING, TRANSIT, WALKING
 	directionsService.route({
-		origin: city_name,
-		destination: "Microsoft Store - Fifth Avenue, 5th Avenue, New York, NY",
+		origin: input.value,
+		destination: "Madison Av/E 58 St, New York, NY, United States",
 		travelMode: 'WALKING'
 	}, function(response, status) {
 		// Route the directions and pass the response to a function to create
@@ -36,14 +35,5 @@ function showSteps(directionResult, markers, stepDisplay, map) {
 		var marker = markers[i] = markers[i] || new google.maps.Marker();
 		marker.setMap(map);
 		marker.setPosition(myRoute.steps[i].start_location);
-		attachInstructionText(stepDisplay, marker, myRoute.steps[i].instructions, map);
 	}
-}
-
-function attachInstructionText(stepDisplay, marker, text, map) {
-	google.maps.event.addListener(marker, 'click', function() {
-		// Open an info window when the marker is clicked on, containing the text of the step.
-		stepDisplay.setContent(text);
-		stepDisplay.open(map, marker);
-	});
 }
