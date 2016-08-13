@@ -12,7 +12,7 @@ function init() {
 	    },
 	    disableDoubleClickZoom: true,
 	    mapTypeControl: false,
-	    scaleControl: false,
+	    scaleControl: true,
 	    scrollwheel: true,
 	    panControl: true,
 	    streetViewControl: false,
@@ -167,7 +167,7 @@ function getCity() {
 				arrayNum = returnedData.results.length;
 				arrayNum -= 3;
 				console.log(returnedData.results[arrayNum].formatted_address);
-				return returnedData.results[arrayNum].formatted_address
+				return returnedData.results[arrayNum].formatted_address;
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
