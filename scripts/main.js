@@ -3,7 +3,6 @@ var map;
 var markers = [];
 var directionsService;
 var directionsDisplay;
-var stepDisplay;
 var city_name;
 var xmlhttp;
 var input;
@@ -37,9 +36,6 @@ function init() {
 
 	// Create a renderer for directions and bind it to the map.
 	directionsDisplay = new google.maps.DirectionsRenderer({map: map});
-
-	// Instantiate an info window to hold step text.
-	stepDisplay = new google.maps.InfoWindow();
 
 	// Create the search box and link it to the UI element.
 	input = /** @type {HTMLInputElement} */(document.getElementById('pac-input'));
