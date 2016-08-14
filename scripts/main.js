@@ -93,6 +93,7 @@ google.maps.event.addDomListener(window, 'load', init);
 
 function sendRequest() {
     var range = document.getElementById("range-slider")[0].value;
+	document.getElementById("loading").className += " is-active";
 	getCity(range);
 }
 
@@ -208,6 +209,7 @@ function getDiscounts(lat, lng, city_name, radius) {
         	else {
             	alert('Something else other than 200 was returned');
         	}
+			document.getElementById("loading").className = "mdl-spinner mdl-js-spinner";
     	}
 	};
     xmlhttp2.open("GET", "https://vast-bastion-98645.herokuapp.com/getdealsforlocation?lat=" + lat + "&lon=" + lng + "&location=" + city_name + "&radius_filter=" + (radius*1000), true);

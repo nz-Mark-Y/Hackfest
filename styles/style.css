@@ -23,6 +23,7 @@
   border-color: #4d90fe;
 }
 #range-slider {
+  width: 30%;
   margin-top: 50px;
   margin-left: 12px;
 }
@@ -31,4 +32,14 @@
 }
 #testing {
   margin: 50px;
+}
+#loading {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
 }
