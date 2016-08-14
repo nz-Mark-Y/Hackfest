@@ -1,7 +1,6 @@
 body {
   min-height: 0 !important;
 }
-
 #googlemaps {
   /* do not change */
   height: 100%;
@@ -44,6 +43,4 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  width: 150px;
-  height: 150px;
 }
