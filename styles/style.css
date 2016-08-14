@@ -19,14 +19,14 @@ body {
   margin: 120px 0 0 12px;
   padding: 10px 11px 10px 13px;
   text-overflow: ellipsis;
-  width: 400px;
+  width: 300px;
   z-index: 0;
 }
 #pac-input :focus {
   border-color: #4d90fe;
 }
 #range-slider {
-  width: 30%;
+  width: 260px;
   margin: -80px 0 0 100px;
 }
 #sendButton {
@@ -56,4 +56,17 @@ body {
   margin: 10px;
   width: 100px;
   height: 100px;
+}
+@media all and (min-width: 465px) {
+  #pac-input {
+    width: 410px;
+  }
+  #range-slider {
+    width: 372px;
+  }
+}
+@media all and (min-width: 768px) {
+  #range-slider {
+    width: 580px;
+  }
 }
