@@ -114,7 +114,6 @@ function getCity(range) {
 				arrayNum -= 4;
 				cityString = returnedCity.results[arrayNum].formatted_address;
 				cityString = cityPuller(cityString);
-				console.log(cityString)
 				getDiscounts(cityString, range);
         	}
         	else if (xmlhttp.status == 400) {
