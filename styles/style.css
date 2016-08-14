@@ -19,14 +19,14 @@ body {
   margin: 120px 0 0 12px;
   padding: 10px 11px 10px 13px;
   text-overflow: ellipsis;
-  width: 300px;
+  width: 87%;
   z-index: 0;
 }
 #pac-input :focus {
   border-color: #4d90fe;
 }
 #range-slider {
-  width: 260px;
+  width: 76%;
   margin: -80px 0 0 100px;
 }
 #sendButton {
@@ -57,16 +57,27 @@ body {
   width: 100px;
   height: 100px;
 }
-@media all and (min-width: 465px) {
+@media all and (min-width: 600px) {
   #pac-input {
-    width: 410px;
+    width: 92%;
   }
   #range-slider {
-    width: 372px;
+    width: 85%;
   }
 }
 @media all and (min-width: 768px) {
+  #pac-input {
+    width: 93.5%;
+  }
   #range-slider {
-    width: 580px;
+    width: 88%;
+  }
+}
+@media all and (min-width: 801px) {
+  #pac-input {
+    width: 420px;
+  }
+  #range-slider {
+    width: 380px;
   }
 }
