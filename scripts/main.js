@@ -104,16 +104,18 @@ function getCity(range) {
 	yolo = xmlhttp;
 	var returnedCity;
 	var arrayNum;
-	var city_name;
+	var cityString;
 	xmlhttp.onreadystatechange = function() {
 		// http://www.w3schools.com/xml/dom_httprequest.asp
     	if (xmlhttp.readyState == 4 ) {
         	if (xmlhttp.status == 200) {
         		returnedCity = JSON.parse(xmlhttp.responseText);
 				arrayNum = returnedCity.results.length;
-				arrayNum -= 3;
-				city_name = returnedCity.results[arrayNum].formatted_address;
-				getDiscounts(city_name, range);
+				arrayNum -= 4;
+				cityString = returnedCity.results[arrayNum].formatted_address;
+				cityString = cityPuller(cityString);
+				console.log(cityString)
+				getDiscounts(cityString, range);
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
@@ -146,4 +148,17 @@ function getDiscounts(city_name, radius) {
 	};
     xmlhttp2.open("GET", "https://vast-bastion-98645.herokuapp.com/getdealsforlocation?lat=" + currentLocation.lat() + "&lon=" + currentLocation.lng() + "&location=" + city_name + "&radius_filter=" + (21000-radius), true);
     xmlhttp2.send();
+}
+
+function cityPuller(cityString) {
+	if (cityString.indexOf(',') != -1) {
+    	var segments = cityString.split(',');
+		cityString = segments[0];
+		if (cityString.indexOf('-') != -1) {
+			var segments = cityString.split('-');
+			cityString = segments[0];
+		}
+	}
+	cityString = cityString.replace(/[0-9]/g, '');
+	return cityString;
 }
