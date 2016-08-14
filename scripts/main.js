@@ -5,7 +5,6 @@ var directionsService;
 var directionsDisplay;
 var yolo;
 var input;
-var city_name;
 var returnedDiscounts;
 
 function init() {
@@ -105,6 +104,7 @@ function getCity(range) {
 	yolo = xmlhttp;
 	var returnedCity;
 	var arrayNum;
+	var city_name;
 	xmlhttp.onreadystatechange = function() {
 		// http://www.w3schools.com/xml/dom_httprequest.asp
     	if (xmlhttp.readyState == 4 ) {
