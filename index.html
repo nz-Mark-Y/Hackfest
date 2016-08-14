@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>app-itite</title>
+    <title>app-etite</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNd5W4yaBOAbaxyrWyM1mPli6CP8GKY44&libraries=places"></script>
     <link href="styles/style.css" rel="stylesheet" />
     <script src="scripts/main.js"></script>
@@ -14,12 +14,13 @@
 
 </head>
 <body>
+	<image id="logoPicture" src="logo.png"></image>
     <input id="pac-input"  class="mdl-textfield__input" type="text" placeholder="Where am I">
     <form id="range-slider">
         <input class="mdl-slider mdl-js-slider" type="range" name="points" min="1000" max="17000" step="2000">
     </form>
     <button id="sendButton" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="sendRequest()">Find Food Deals</button>
-	<div id="googlemaps"></div>  
+	<div id="googlemaps"></div>
     <div id="loading" class="mdl-spinner mdl-js-spinner"></div>
 	<!--<button id="testing" onclick="placingMarker()">Harambe</button>-->
 </body>
