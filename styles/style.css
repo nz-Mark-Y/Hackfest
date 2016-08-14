@@ -45,3 +45,9 @@ body {
   bottom: 0;
   right: 0;
 }
+#markerContent {
+  color: #000;
+  background-color: #fff;
+  padding: 5px;
+  width: 150px;
+}

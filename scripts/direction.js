@@ -53,7 +53,7 @@ function placingMarker() {
 				infoWindowVisible(false);
 			} else {
 				// styling of marker text (fix when have time)
-				var html = "<div style='color:#000;background-color:#fff;padding:5px;width:150px;'><h4>" + title + "</h4><p>" + disc + "</p><p>" + desc + "</p><p>" + web + "</p></div>";
+				var html = "<div id='markerContent'><h4>" + title + "</h4><p>" + disc + "</p><p>" + desc + "</p><p>" + web + "</p></div>";
 
 				iw = new google.maps.InfoWindow({
 					content: html
@@ -78,7 +78,7 @@ function calculateAndDisplayRoute() {
 	directionsService.route({
 		origin: input.value,
 		destination: position,
-		travelMode: 'WALKING'
+		travelMode: 'DRIVING'
 	}, function(response, status) {
 		// Route the directions and pass the response to a function to create
 		// markers for each step.
