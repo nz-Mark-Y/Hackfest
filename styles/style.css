@@ -1,3 +1,7 @@
+body {
+  min-height: 0 !important;
+}
+
 #googlemaps {
   /* do not change */
   height: 100%;
