@@ -13,28 +13,31 @@ function action2() {
 
 function placingMarker() {
 	// customizing location markers & info
-	//var locations = [["#JusticeForHarambe", "gorilla god", "0800838383", "harame@limbo.com", "www.google.com", 40.7128, -74.02]];
-	var bounds = new google.maps.LatLngBounds();
-	for (var i = 0; i < returnedDiscounts.length; i++) {
-		// Create a marker for each place
-		var position = new google.maps.LatLng(returnedDiscounts[i].coordinates.latitude, returnedDiscounts[i].coordinates.longitude);
-		bounds.extend(position);
-		var marker = new google.maps.Marker({
-			map: map,
-			icon: 'https://mapbuildr.com/assets/img/markers/solid-pin-red.png',
-			title: returnedDiscounts[i].name,
-			disc: returnedDiscounts[i].deals[0].title,
-			desc: returnedDiscounts[i].deals[0].what_you_get,
-			web: returnedDiscounts[i].deals[0].url,
-			position: position
-		});
+	if (returnedDiscounts.length === 0) {
+		alert('No Discounts Found');
+	} else {
+		var bounds = new google.maps.LatLngBounds();
+		for (var i = 0; i < returnedDiscounts.length; i++) {
+			// Create a marker for each place
+			var position = new google.maps.LatLng(returnedDiscounts[i].coordinates.latitude, returnedDiscounts[i].coordinates.longitude);
+			bounds.extend(position);
+			var marker = new google.maps.Marker({
+				map: map,
+				icon: 'https://mapbuildr.com/assets/img/markers/solid-pin-red.png',
+				title: returnedDiscounts[i].name,
+				disc: returnedDiscounts[i].deals[0].title,
+				desc: returnedDiscounts[i].deals[0].what_you_get,
+				web: returnedDiscounts[i].deals[0].url,
+				position: position
+			});
+	
+			marker.setMap(map);
+			markers.push(marker);
 
-		marker.setMap(map);
-		markers.push(marker);
-
-		bindInfoWindow(marker, map, marker.title, marker.disc, marker.desc, marker.web);
+			bindInfoWindow(marker, map, marker.title, marker.disc, marker.desc, marker.web);
+		}
+		map.fitBounds(bounds);
 	}
-	map.fitBounds(bounds);
 
 	function bindInfoWindow(marker, map, title, disc, desc, web) {
 		var infoWindowVisible = (function() {
