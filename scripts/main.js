@@ -141,6 +141,6 @@ function getDiscounts(lat, lng, city_name, radius) {
 			document.getElementById("loading").className = "mdl-spinner mdl-js-spinner";
     	}
 	};
-    xmlhttp2.open("GET", "https://vast-bastion-98645.herokuapp.com/getdealsforlocation?lat=" + lat + "&lon=" + lng + "&location=" + city_name + "&radius_filter=" + 21000-(radius*1000), true);
+    xmlhttp2.open("GET", "https://vast-bastion-98645.herokuapp.com/getdealsforlocation?lat=" + lat + "&lon=" + lng + "&location=" + city_name + "&radius_filter=" + (21000-(radius*1000)), true);
     xmlhttp2.send();
 }
