@@ -130,7 +130,7 @@ function getDiscounts(lat, lng, city_name, radius) {
     	if (xmlhttp2.readyState == 4 ) {
         	if (xmlhttp2.status == 200) {
         		returnedDiscounts = JSON.parse(xmlhttp2.responseText);
-				action();
+				action1();
         	}
         	else if (xmlhttp2.status == 400) {
             	alert('There was an error 400');

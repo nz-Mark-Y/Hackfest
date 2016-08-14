@@ -1,10 +1,13 @@
-function action() {
+function action1() {
 	//console.log(document.getElementById('end').value);
 	if (yolo === undefined) sendRequest();
 	placingMarker();
-	/*if (yolo.readyState == 4) {
+}
+
+function action2() {
+	if (yolo.readyState == 4) {
 		calculateAndDisplayRoute();
-	}*/
+	}
 }
 
 function placingMarker() {
