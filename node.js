@@ -24,6 +24,7 @@ app.get('/getdealsforlocation', function (req, res) {
 //list user timeline
   twitter.get('https://api.yelp.com/v2/search?cll='+ req.query.lat + ',' + req.query.lon +'&location=' + req.query.location + '&deals_filter=true&term=food&radius_filter='+req.query.radius_filter, function(err, thing, data) {
     res.setHeader('Content-Type','application/json');
+	res.addHeader("Access-Control-Allow-Origin", "*");
       if(err){
           console.log(err);
       }
@@ -39,6 +40,9 @@ app.get('/hello', function(request, response) {
 function filterData(data) {
   //console.log('data', data);
   var filteredData = [];
+  if (data.length === 0) {
+	return filteredData;
+  }
   var businesses = data.businesses;
   businesses.map(function(business){
       var newObject = {};
@@ -47,7 +51,7 @@ function filterData(data) {
       newObject.address = business.location.display_address;
       newObject.coordinates = business.location.coordinate
       filteredData.push(newObject);
-  });
+  }); 	
   return filteredData;
 
 }
