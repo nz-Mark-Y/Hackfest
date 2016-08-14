@@ -93,9 +93,11 @@ function init() {
 google.maps.event.addDomListener(window, 'load', init);
 
 function sendRequest() {
-    var range = document.getElementById("range-slider")[0].value;
-	document.getElementById("loading").className += " is-active";
-	getCity(range);
+	if (currentLocation !== undefined) {	// if the search box has been used at least once
+	    var range = document.getElementById("range-slider")[0].value;
+		document.getElementById("loading").className += " is-active";
+		getCity(range);
+	}
 }
 
 function getCity(range) {
