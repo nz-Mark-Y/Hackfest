@@ -53,7 +53,7 @@ function placingMarker() {
 				infoWindowVisible(false);
 			} else {
 				// styling of marker text (fix when have time)
-				var html = "<div id='markerContent'><h4>" + title + "</h4><p>" + disc + "</p><p>" + desc + "</p><p>" + web + "</p></div>";
+				var html = "<div id='markerContent'><h4>" + title + "</h4><p>" + disc + "</p><p>" + desc + "</p><a href=" + web + ">" + web + "</a></div>";
 
 				iw = new google.maps.InfoWindow({
 					content: html
