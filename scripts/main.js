@@ -111,7 +111,7 @@ function getCity(range) {
 				arrayNum = returnedCity.results.length;
 				arrayNum -= 3;
 				city_name = returnedCity.results[arrayNum].formatted_address;
-				getDiscounts(currentLocation.lat(), currentLocation.lng(), city_name, range);
+				getDiscounts(city_name, range);
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
@@ -125,7 +125,7 @@ function getCity(range) {
     xmlhttp.send();
 }
 
-function getDiscounts(lat, lng, city_name, radius) {
+function getDiscounts(city_name, radius) {
 	var xmlhttp2 = new XMLHttpRequest();
 	xmlhttp2.onreadystatechange = function() {
     	if (xmlhttp2.readyState == 4 ) {
@@ -142,6 +142,6 @@ function getDiscounts(lat, lng, city_name, radius) {
 			document.getElementById("loading").className = "mdl-spinner mdl-js-spinner";
     	}
 	};
-    xmlhttp2.open("GET", "https://vast-bastion-98645.herokuapp.com/getdealsforlocation?lat=" + lat + "&lon=" + lng + "&location=" + city_name + "&radius_filter=" + (21000-radius), true);
+    xmlhttp2.open("GET", "https://vast-bastion-98645.herokuapp.com/getdealsforlocation?lat=" + currentLocation.lat() + "&lon=" + currentLocation.lng() + "&location=" + city_name + "&radius_filter=" + (21000-radius), true);
     xmlhttp2.send();
 }

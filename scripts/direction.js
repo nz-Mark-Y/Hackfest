@@ -30,43 +30,43 @@ function placingMarker() {
 				web: returnedDiscounts[i].deals[0].url,
 				position: position
 			});
-	
+
 			marker.setMap(map);
 			markers.push(marker);
 
-			bindInfoWindow(marker, map, marker.title, marker.disc, marker.desc, marker.web);
+			bindInfoWindow(marker, marker.title, marker.disc, marker.desc, marker.web);
 		}
 		map.fitBounds(bounds);
 	}
+}
 
-	function bindInfoWindow(marker, map, title, disc, desc, web) {
-		var infoWindowVisible = (function() {
-			var currentlyVisible = false;
-			return function(visible) {
-				if (visible !== undefined) {
-					currentlyVisible = visible;
-				}
-				return currentlyVisible;
-			};
-		}());
-		iw = new google.maps.InfoWindow();
-		google.maps.event.addListener(marker, 'click', function() {
-			if (infoWindowVisible()) {
-				iw.close();
-				infoWindowVisible(false);
-			} else {
-				// styling of marker text (fix when have time)
-				var html = "<div id='markerContent'><h4>" + title + "</h4><p>" + disc + "</p><p>" + desc + "</p><a href=" + web + ">" + web + "</a> <button id='directButton' class='mdl-button mdl-js-button mdl-button--raised mdl-button--colored' onclick='action2()'>Find Route</button></div>";
-
-				iw = new google.maps.InfoWindow({
-					content: html
-				});
-				iw.open(map, marker);
-				infoWindowVisible(true);
-				tempPosition = [marker.position.lat(), marker.position.lng()];
+function bindInfoWindow(marker, title, disc, desc, web) {
+	var infoWindowVisible = (function() {
+		var currentlyVisible = false;
+		return function(visible) {
+			if (visible !== undefined) {
+				currentlyVisible = visible;
 			}
-		});
-	}
+			return currentlyVisible;
+		};
+	}());
+	var iw = new google.maps.InfoWindow();
+	google.maps.event.addListener(marker, 'click', function() {
+		if (infoWindowVisible()) {
+			iw.close();
+			infoWindowVisible(false);
+		} else {
+			// styling of marker text (fix when have time)
+			var html = "<div id='markerContent'><h4>" + title + "</h4><p>" + disc + "</p><p>" + desc + "</p><a href=" + web + ">" + web + "</a> <button id='directButton' class='mdl-button mdl-js-button mdl-button--raised mdl-button--colored' onclick='action2()'>Find Route</button></div>";
+
+			iw = new google.maps.InfoWindow({
+				content: html
+			});
+			iw.open(map, marker);
+			infoWindowVisible(true);
+			tempPosition = [marker.position.lat(), marker.position.lng()];
+		}
+	});
 }
 
 function calculateAndDisplayRoute() {
