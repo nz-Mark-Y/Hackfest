@@ -5,7 +5,6 @@ var directionsService;
 var directionsDisplay;
 var yolo;
 var input;
-var city_name;
 var returnedDiscounts;
 
 function init() {
@@ -93,9 +92,11 @@ function init() {
 google.maps.event.addDomListener(window, 'load', init);
 
 function sendRequest() {
-    var range = document.getElementById("range-slider")[0].value;
-	document.getElementById("loading").className += " is-active";
-	getCity(range);
+	if (currentLocation !== undefined) {	// if the search box has been used at least once
+	    var range = document.getElementById("range-slider")[0].value;
+		document.getElementById("loading").className += " is-active";
+		getCity(range);
+	}
 }
 
 function getCity(range) {
@@ -103,6 +104,7 @@ function getCity(range) {
 	yolo = xmlhttp;
 	var returnedCity;
 	var arrayNum;
+	var city_name;
 	xmlhttp.onreadystatechange = function() {
 		// http://www.w3schools.com/xml/dom_httprequest.asp
     	if (xmlhttp.readyState == 4 ) {
@@ -111,7 +113,7 @@ function getCity(range) {
 				arrayNum = returnedCity.results.length;
 				arrayNum -= 3;
 				city_name = returnedCity.results[arrayNum].formatted_address;
-				getDiscounts(currentLocation.lat(), currentLocation.lng(), city_name, range);
+				getDiscounts(city_name, range);
         	}
         	else if (xmlhttp.status == 400) {
             	alert('There was an error 400');
@@ -125,7 +127,7 @@ function getCity(range) {
     xmlhttp.send();
 }
 
-function getDiscounts(lat, lng, city_name, radius) {
+function getDiscounts(city_name, radius) {
 	var xmlhttp2 = new XMLHttpRequest();
 	xmlhttp2.onreadystatechange = function() {
     	if (xmlhttp2.readyState == 4 ) {
@@ -142,6 +144,6 @@ function getDiscounts(lat, lng, city_name, radius) {
 			document.getElementById("loading").className = "mdl-spinner mdl-js-spinner";
     	}
 	};
-    xmlhttp2.open("GET", "https://vast-bastion-98645.herokuapp.com/getdealsforlocation?lat=" + lat + "&lon=" + lng + "&location=" + city_name + "&radius_filter=" + (21000-radius), true);
+    xmlhttp2.open("GET", "https://vast-bastion-98645.herokuapp.com/getdealsforlocation?lat=" + currentLocation.lat() + "&lon=" + currentLocation.lng() + "&location=" + city_name + "&radius_filter=" + (21000-radius), true);
     xmlhttp2.send();
 }
