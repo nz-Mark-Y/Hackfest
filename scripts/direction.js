@@ -5,10 +5,7 @@ function action1() {
 }
 
 function action2() {
-	if (yolo === undefined) sendRequest();
-	if (yolo.readyState == 4) {
-		calculateAndDisplayRoute();
-	}
+	calculateAndDisplayRoute();
 }
 
 function placingMarker() {
