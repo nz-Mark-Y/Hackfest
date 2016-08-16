@@ -3,7 +3,6 @@ var map;
 var markers = [];
 var directionsService;
 var directionsDisplay;
-var yolo;
 var input;
 var returnedDiscounts;
 
@@ -101,7 +100,6 @@ function sendRequest() {
 
 function getCity(range) {
 	var xmlhttp = new XMLHttpRequest();
-	yolo = xmlhttp;
 	var returnedCity;
 	var arrayNum;
 	var cityString;
@@ -110,11 +108,8 @@ function getCity(range) {
     	if (xmlhttp.readyState == 4 ) {
         	if (xmlhttp.status == 200) {
         		returnedCity = JSON.parse(xmlhttp.responseText);
-				arrayNum = returnedCity.results.length;
-				arrayNum -= 4;
-				cityString = returnedCity.results[arrayNum].formatted_address;
-				cityString = cityPuller(cityString);
-				console.log(cityString)
+				arrayNum = returnedCity.results.length - 4;  // index of returnedCity.results array, which gives full name of location typed
+				cityString = cityPuller(returnedCity.results[arrayNum].formatted_address);
 				getDiscounts(cityString, range);
         	}
         	else if (xmlhttp.status == 400) {
@@ -146,7 +141,7 @@ function getDiscounts(city_name, radius) {
 			document.getElementById("loading").className = "mdl-spinner mdl-js-spinner";
     	}
 	};
-    xmlhttp2.open("GET", "https://vast-bastion-98645.herokuapp.com/getdealsforlocation?lat=" + currentLocation.lat() + "&lon=" + currentLocation.lng() + "&location=" + city_name + "&radius_filter=" + (21000-radius), true);
+    xmlhttp2.open("GET", "https://vast-bastion-98645.herokuapp.com/getdealsforlocation?lat=" + currentLocation.lat() + "&lon=" + currentLocation.lng() + "&location=" + city_name + "&radius_filter=" + (18000-radius), true);
     xmlhttp2.send();
 }
 
@@ -155,7 +150,7 @@ function cityPuller(cityString) {
     	var segments = cityString.split(',');
 		cityString = segments[0];
 		if (cityString.indexOf('-') != -1) {
-			var segments = cityString.split('-');
+			segments = cityString.split('-');
 			cityString = segments[0];
 		}
 	}

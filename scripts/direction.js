@@ -5,10 +5,7 @@ function action1() {
 }
 
 function action2() {
-	if (yolo === undefined) sendRequest();
-	if (yolo.readyState == 4) {
-		calculateAndDisplayRoute();
-	}
+	calculateAndDisplayRoute();
 }
 
 function placingMarker() {
@@ -19,22 +16,24 @@ function placingMarker() {
 		var bounds = new google.maps.LatLngBounds();
 		for (var i = 0; i < returnedDiscounts.length; i++) {
 			// Create a marker for each place
-			var position = new google.maps.LatLng(returnedDiscounts[i].coordinates.latitude, returnedDiscounts[i].coordinates.longitude);
-			bounds.extend(position);
-			var marker = new google.maps.Marker({
-				map: map,
-				icon: 'https://mapbuildr.com/assets/img/markers/solid-pin-red.png',
-				title: returnedDiscounts[i].name,
-				disc: returnedDiscounts[i].deals[0].title,
-				desc: returnedDiscounts[i].deals[0].what_you_get,
-				web: returnedDiscounts[i].deals[0].url,
-				position: position
-			});
+			if ('coordinates' in returnedDiscounts[i]) {
+				var position = new google.maps.LatLng(returnedDiscounts[i].coordinates.latitude, returnedDiscounts[i].coordinates.longitude);
+				bounds.extend(position);
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: 'https://mapbuildr.com/assets/img/markers/solid-pin-red.png',
+					title: returnedDiscounts[i].name,
+					disc: returnedDiscounts[i].deals[0].title,
+					desc: returnedDiscounts[i].deals[0].what_you_get,
+					web: returnedDiscounts[i].deals[0].url,
+					position: position
+				});
+			
+				marker.setMap(map);
+				markers.push(marker);
 
-			marker.setMap(map);
-			markers.push(marker);
-
-			bindInfoWindow(marker, marker.title, marker.disc, marker.desc, marker.web);
+				bindInfoWindow(marker, marker.title, marker.disc, marker.desc, marker.web);
+			}
 		}
 		map.fitBounds(bounds);
 	}
